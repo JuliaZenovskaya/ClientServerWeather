@@ -1,0 +1,10 @@
+.weather {
+    margin: 30px;
+    font-size: 20px;
+    border: 2px green ridge;
+}
+
+.left {
+  float: left;
+  margin-left: 10px;
+}

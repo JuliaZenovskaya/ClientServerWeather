@@ -1,0 +1,19 @@
+.App {
+  width: 60%;
+  margin: 2% 20%;
+  background-color: rgb(222, 244, 213);
+  padding: 1%;
+  border: 2px rgb(50, 112, 51) ridge;
+}
+
+.header_text {
+  float: left;
+  width: 70%;
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.geo_weather {
+  margin-top: 20px;
+  margin-left: 10px;
+}

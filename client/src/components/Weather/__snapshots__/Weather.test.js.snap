@@ -1,0 +1,141 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Weather for geolocation Weather has loaded 1`] = `
+<div
+  className="weather"
+>
+  <div
+    className="left"
+  >
+    <div>
+      Moscow
+    </div>
+    <img
+      src="https://openweathermap.org/img/wn/50n.png"
+    />
+    <div>
+      -269
+       °C
+    </div>
+  </div>
+  <div
+    className="right"
+  >
+    <div
+      className="pressure"
+    >
+      Давление: 
+      1015
+       hPa
+    </div>
+    <div
+      className="humidity"
+    >
+      Влажность: 
+      100
+      %
+    </div>
+    <div
+      className="clouds"
+    >
+      Облачность: 
+      mist
+    </div>
+    <div
+      className="wind"
+    >
+      Ветер: 
+      4
+       м/с
+    </div>
+    <div
+      className="coords"
+    >
+      Координаты: [
+      37.62
+      , 
+      55.75
+      ]
+    </div>
+  </div>
+</div>
+`;
+
+exports[`Weather for geolocation Weather is loading 1`] = `
+<div>
+  Загрузка...
+</div>
+`;
+
+exports[`Weather for the city Weather has loaded 1`] = `
+<div>
+  Загрузка...
+</div>
+`;
+
+exports[`Weather for the city Weather is loading 1`] = `
+<div
+  className="weather"
+>
+  <div
+    className="left"
+  >
+    <div>
+      Moscow
+    </div>
+    <img
+      src="https://openweathermap.org/img/wn/50n.png"
+    />
+    <div>
+      -269
+       °C
+    </div>
+    <button
+      className="button"
+      onClick={[Function]}
+    >
+      Удалить
+    </button>
+  </div>
+  <div
+    className="right"
+  >
+    <div
+      className="pressure"
+    >
+      Давление: 
+      1015
+       hPa
+    </div>
+    <div
+      className="humidity"
+    >
+      Влажность: 
+      100
+      %
+    </div>
+    <div
+      className="clouds"
+    >
+      Облачность: 
+      mist
+    </div>
+    <div
+      className="wind"
+    >
+      Ветер: 
+      4
+       м/с
+    </div>
+    <div
+      className="coords"
+    >
+      Координаты: [
+      37.62
+      , 
+      55.75
+      ]
+    </div>
+  </div>
+</div>
+`;
