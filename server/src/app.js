@@ -12,7 +12,7 @@ app.use((req, res, next) => {
     next();
 });
 
-const mongoDB = 'mongodb+srv://juliazenovskaya:eadghe@weather-3uans.mongodb.net/weather_db?retryWrites=true&w=majority';
+const mongoDB = 'mongodb+srv://juliazenovskaya:julia1309199834402@cluster0-dbkj6.azure.mongodb.net/test?retryWrites=true&w=majority';
 mongoose.connect(mongoDB, { useNewUrlParser: true, useUnifiedTopology: true })
   .then(() => {
       console.log('DB connected');
@@ -23,7 +23,7 @@ mongoose.connect(mongoDB, { useNewUrlParser: true, useUnifiedTopology: true })
         extended: false
       }));
 
-      app.use('/', index_router);
+      app.use('/', index);
     })
   .catch((err) => console.log('DB error', err));
 
