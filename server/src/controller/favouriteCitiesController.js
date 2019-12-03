@@ -1,4 +1,4 @@
-import FavoutiteCity from '../model/city'
+import FavouriteCity from '../model/city'
 
 export const addCity = (req, res) => {
   const city = new FavouriteCity({
@@ -7,7 +7,7 @@ export const addCity = (req, res) => {
   city
     .save()
     .then(
-      newCity => res.status(200)
+      newCity => res.status(201)
       .json({
         success: true,
         message: 'Success',
@@ -16,14 +16,14 @@ export const addCity = (req, res) => {
     .catch(
       error => res.status(404).json({
         success: false,
-        message: 'Error',
+        message: 'Error here',
         error
       }));
 };
 
 export const deleteCity = (req, res) => {
   FavouriteCity
-    .findAndDelete({
+    .findOneAndDelete({
       _id: req.params.id
     })
     .then(
@@ -40,7 +40,7 @@ export const deleteCity = (req, res) => {
 };
 
 export const getCities = (req, res) => {
-  FavoutiteCity
+  FavouriteCity
     .find()
     .then(
       cities => res.json(cities)

@@ -34,7 +34,7 @@ export function fetchAddedCitiesError(error, city) {
 
 export function getWeatherByCity(city) {
  return function(dispatch) {
-    fetch(`https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=e972dcd233bab1ebce419c370711921f`)
+    fetch(`/weather?city=${city}`)
       .then(response => {
         response.json()
           .then(json => {

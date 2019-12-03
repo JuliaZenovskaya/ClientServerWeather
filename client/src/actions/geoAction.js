@@ -28,7 +28,7 @@ export function setTrue(tr){
 
 export function getWeatherByCoords(coords) {
   return function(dispatch) {
-     fetch(`https://api.openweathermap.org/data/2.5/weather?lat=${coords.lat}&lon=${coords.lon}&appid=e972dcd233bab1ebce419c370711921f`)
+     fetch(`/weather/coordinates?lat=${coords.lat}&long=${coords.lon}`)
        .then(response => {
          response.json()
            .then(json => {

@@ -9,14 +9,17 @@ import geoReducer from './reducers/geoReducer';
 import сitiesReducer from './reducers/сitiesReducer';
 import thunk from "redux-thunk";
 
+const state = { cities: []};
+
+
 const storeWeather = createStore (combineReducers({
 geo : geoReducer,
 fav_cities : сitiesReducer,
-}), applyMiddleware(thunk));
+}),applyMiddleware(thunk));
 
-storeWeather.subscribe(() => {
+/*storeWeather.subscribe(() => {
   localStorage.setItem('cities', JSON.stringify([...storeWeather.getState().fav_cities.cities.keys()]));
-});
+});*/
 
 ReactDOM.render(
 <Provider store = {storeWeather}>
@@ -33,7 +36,4 @@ export default function getCitiesFromStorage() {
   return new Map(cities.map(city => [city]));
   }
 
-// If you want your app to work offline and load faster, you can change
-// unregister() to register() below. Note this comes with some pitfalls.
-// Learn more about service workers: https://bit.ly/CRA-PWA
 serviceWorker.unregister();

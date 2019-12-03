@@ -17,7 +17,7 @@ export const getWeatherByCityName = (req, res, next) => {
             .catch(error => {
                 res.status(404).json({
                   success: false,
-                  message: 'Error',
+                  message: 'Error weather',
                   error
                 });
             });
