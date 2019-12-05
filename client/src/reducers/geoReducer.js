@@ -5,7 +5,8 @@ export default function geoReducer (currentState, action) {
   };
   switch (action.type) {
     case 'SET_TRUE':
-    state.isloading = action.payload;
+      state.isloading = action.payload;
+      break;
     case 'SET_COORDS':
       state.coords = action.payload;
       break;

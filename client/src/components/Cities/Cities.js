@@ -1,6 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
 import Weather from '../Weather/Weather';
+import axios from 'axios';
 import { addCity, deleteCity, getWeatherByCity } from '../../actions/сitiesAction';
 import './Cities.css';
 
@@ -49,18 +50,42 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch) {
   return {
-    addCity: (city) => {
-      dispatch(addCity(city));
+    addCity: (name) => {
+      dispatch(addCityStore(name));
     },
 
-    deleteCity: (city) => {
-      dispatch(deleteCity(city));
+    deleteCity: (id) => {
+      dispatch(deleteCityStore(id));
     },
 
     getWeatherByCity: (city) => {
       dispatch(getWeatherByCity(city));
     }
   };
+}
+
+const addCityStore = name => {
+  return dispatch => {
+    axios
+      .post('/favourites', { name })
+      .then(response => {
+        const city = {
+          id: response.data._id,
+          name: response.data.name
+        };
+      dispatch(addCity(city));
+    });
+  };
+};
+
+const deleteCityStore = id => {
+  return dispatch => {
+    axios
+      .delete('/favourites/${id}')
+      .then(response => {
+        dispatch(deleteCity(id))
+      })
+  }
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Cities);

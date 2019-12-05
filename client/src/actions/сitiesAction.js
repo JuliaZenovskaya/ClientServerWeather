@@ -1,14 +1,16 @@
-export function addCity(city) {
+
+
+export function addCity(name) {
   return {
     type: 'ADD_CITY',
-    payload: city
+    payload: name
   };
 }
 
-export function deleteCity(city) {
+export function deleteCity(id) {
   return {
     type: 'DELETE_CITY',
-    payload: city
+    payload: id
   };
 }
 

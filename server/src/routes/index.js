@@ -5,9 +5,7 @@ import { getWeatherByCityName, getWeatherByCoords } from '../controller/weatherF
 const router = express.Router();
 
 router.get('/weather', getWeatherByCityName);
-
 router.get('/weather/coordinates', getWeatherByCoords);
-
 router.get('/favourites', getCities)
 router.post('/favourites', addCity);
 router.delete('/favourites/:id', deleteCity);

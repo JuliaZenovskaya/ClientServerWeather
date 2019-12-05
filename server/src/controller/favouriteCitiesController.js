@@ -33,7 +33,7 @@ export const deleteCity = (req, res) => {
       }))
     .catch(
       error => res.status(404).json({
-        success: true,
+        success: false,
         message: 'Error',
         error
       }));
