@@ -12,6 +12,13 @@ export default function citiesReducer(currentState = {cities: [], error: false},
 
   switch (action.type) {
 
+    case 'SOME_ERROR':
+      state  = {
+        ...state,
+        error: action.payload
+      };
+      break;
+
     case 'GET_CITY':
       state = {
         ...state,

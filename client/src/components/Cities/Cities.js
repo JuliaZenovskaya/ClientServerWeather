@@ -2,7 +2,7 @@ import React from "react";
 import { connect } from "react-redux";
 import Weather from '../Weather/Weather';
 import axios from 'axios';
-import { getCity, addCity, deleteCity, getWeatherByCity } from '../../actions/сitiesAction';
+import { getCity, addCity, deleteCity, getWeatherByCity, someError } from '../../actions/сitiesAction';
 import getCitiesFromStorage from '../../index';
 import './Cities.css';
 
@@ -70,6 +70,10 @@ function mapDispatchToProps(dispatch) {
 
     getWeatherByCity: (id, name) => {
       dispatch(getWeatherByCity(id, name));
+    },
+
+    someError: (error) => {
+      dispatch(someError(error));
     }
   };
 }
@@ -79,8 +83,10 @@ const addCityStore = name => {
     axios
       .post('favourites', { name })
         .then(response => {
-          console.log(response.data.newCity);
           dispatch(addCity(response.data.newCity._id, response.data.newCity.name));
+        })
+        .catch(error => {
+          dispatch(someError("Cannot add new city"));
         });
   };
 };
@@ -92,6 +98,9 @@ const deleteCityStore = id => {
         .then(response => {
           dispatch(deleteCity(id))
         })
+        .catch(error => {
+          dispatch(someError("Cannot delete city"));
+        });
   }
 }
 
@@ -103,6 +112,9 @@ const getCities = () => {
           const cities = response.data.map(city => ({ id: city._id, name: city.name }));
           dispatch(getCity(cities));
         })
+        .catch(error => {
+          dispatch(someError("Cannot get favourite cities"));
+        });
   }
 }
 

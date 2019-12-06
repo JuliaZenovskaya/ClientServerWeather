@@ -1,5 +1,3 @@
-
-
 export function addCity(id, name) {
   return {
     type: 'ADD_CITY',
@@ -8,6 +6,13 @@ export function addCity(id, name) {
       name
     }
   };
+}
+
+export function someError(error) {
+  return {
+    type: 'SOME_ERROR',
+    payload: error
+  }
 }
 
 export function deleteCity(id) {
