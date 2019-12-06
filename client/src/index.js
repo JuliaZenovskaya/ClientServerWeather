@@ -15,27 +15,9 @@ geo : geoReducer,
 fav_cities : сitiesReducer,
 }),applyMiddleware(thunk));
 
-/*storeWeather.subscribe(() => {
-  localStorage.setItem('cities', JSON.stringify([...storeWeather.getState().fav_cities.cities.keys()]));
-});*/
-
 ReactDOM.render(
 <Provider store = {store}>
   <App />
 </Provider>, document.getElementById('root'));
-
-export default function getCitiesFromStorage() {
-  axios
-    .get('/favourites')
-    .then(response => {
-      const cities = response.data.map(
-        city => ({
-          id: city._id,
-          name: city.name
-        })
-      );
-    return cities;
-    });
-  }
 
 serviceWorker.unregister();

@@ -16,7 +16,7 @@ export const addCity = (req, res) => {
     .catch(
       error => res.status(404).json({
         success: false,
-        message: 'Error here',
+        message: 'Error with adding new favoutire city',
         error
       }));
 };
@@ -34,7 +34,7 @@ export const deleteCity = (req, res) => {
     .catch(
       error => res.status(404).json({
         success: false,
-        message: 'Error',
+        message: 'Error with deleting favourite city',
         error
       }));
 };
@@ -48,7 +48,7 @@ export const getCities = (req, res) => {
     .catch(
       error => res.status(500).json({
         success: false,
-        message: 'Error',
+        message: 'Error with getteng favourite cities',
         error
       }));
 }

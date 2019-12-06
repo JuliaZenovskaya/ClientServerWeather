@@ -5,8 +5,7 @@ class Weather extends React.Component {
   componentDidMount() {
     if (this.props.getWeather) {
       this.props.getWeather();
-    }
-  }
+  }}
 
   render() {
     if (!this.props.weather) {
@@ -17,7 +16,7 @@ class Weather extends React.Component {
       <div className="weather">
       <div className="left">
         <div>{this.props.weather.name}</div>
-        <img src={`https://openweathermap.org/img/wn/${this.props.weather.weather[0].icon}.png`} />
+        <img src={`https://openweathermap.org/img/wn/${this.props.weather.weather[0].icon}.png`} alt="d" />
         <div>{Math.round(this.props.weather.main.temp)-273} °C</div>
         {this.props.onDelete && <button className="button" onClick={this.props.onDelete}>Удалить</button>}
       </div>

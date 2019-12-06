@@ -1,9 +1,13 @@
 
 
-export function addCity(name) {
+export function addCity(id, name) {
+  console.log(name);
   return {
     type: 'ADD_CITY',
-    payload: name
+    payload: {
+      id,
+      name
+    }
   };
 }
 
@@ -14,40 +18,48 @@ export function deleteCity(id) {
   };
 }
 
-export function fetchAddedCitiesSuccess(response, city) {
+export function getCity(cities) {
+  return {
+    type: 'GET_CITY',
+    payload: cities
+  }
+}
+
+export function fetchAddedCitiesSuccess(response, id, city) {
   return {
     type: 'FETCH_ADDED_CITY_SUCCESS',
     payload: {
       response,
+      id,
       city
     }
   }
 }
 
-export function fetchAddedCitiesError(error, city) {
+export function fetchAddedCitiesError(error, id) {
   return {
     type: 'FETCH_ADDED_CITY_ERROR',
     payload: {
       error,
-      city
+      id
     }
   }
 }
 
-export function getWeatherByCity(city) {
+export function getWeatherByCity(id, name) {
  return function(dispatch) {
-    fetch(`/weather?city=${city}`)
+    fetch(`/weather?city=` + name)
       .then(response => {
         response.json()
           .then(json => {
             if (response.ok) {
-              dispatch(fetchAddedCitiesSuccess(json, city));
+              dispatch(fetchAddedCitiesSuccess(json, id, name));
             } else {
               let error = json.message;
-              dispatch(fetchAddedCitiesError(error, city));
+              dispatch(fetchAddedCitiesError(error, id));
             }
           });
       },
-      error => dispatch(fetchAddedCitiesError(error, city)))
+      error => dispatch(fetchAddedCitiesError(error, id)))
   }
 }

@@ -2,10 +2,16 @@ import React from "react";
 import { connect } from "react-redux";
 import Weather from '../Weather/Weather';
 import axios from 'axios';
-import { addCity, deleteCity, getWeatherByCity } from '../../actions/сitiesAction';
+import { getCity, addCity, deleteCity, getWeatherByCity } from '../../actions/сitiesAction';
+import getCitiesFromStorage from '../../index';
 import './Cities.css';
 
 class Cities extends React.Component {
+
+componentDidMount(){
+  this.props.getCity();
+}
+
   render() {
     return (
       <div>
@@ -17,19 +23,21 @@ class Cities extends React.Component {
         </form>
       </div >
         {this.props.error && <div className="error">Error: {this.props.error}</div>}
+
         <div  className="weather">
-          {
-            [...this.props.cities.entries()].map((entry) => {
-              return (
-                <Weather
-                  key={entry[0]}
-                  getWeather={() => this.props.getWeatherByCity(entry[0])}
-                  onDelete={() => this.props.deleteCity(entry[0])}
-                  weather={entry[1]}/>
-              );
-            })
-          }
-        </div>
+                  {
+                    [...this.props.cities.entries()].map((entry) => {
+                      return (
+                        <Weather
+                        weather={entry[1].weather}
+                        key={entry[1].id}
+                        getWeather={() => this.props.getWeatherByCity(entry[1].id, entry[1].name)}
+                        onDelete={() => this.props.deleteCity(entry[1].id)} />
+                      );
+                    })
+                  }
+                </div>
+
       </div>
     );
   }
@@ -50,6 +58,10 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch) {
   return {
+    getCity: () => {
+      dispatch(getCities());
+    },
+
     addCity: (name) => {
       dispatch(addCityStore(name));
     },
@@ -58,8 +70,8 @@ function mapDispatchToProps(dispatch) {
       dispatch(deleteCityStore(id));
     },
 
-    getWeatherByCity: (city) => {
-      dispatch(getWeatherByCity(city));
+    getWeatherByCity: (id, name) => {
+      dispatch(getWeatherByCity(id, name));
     }
   };
 }
@@ -67,13 +79,10 @@ function mapDispatchToProps(dispatch) {
 const addCityStore = name => {
   return dispatch => {
     axios
-      .post('/favourites', { name })
+      .post('favourites', { name })
       .then(response => {
-        const city = {
-          id: response.data._id,
-          name: response.data.name
-        };
-      dispatch(addCity(city));
+        console.log(response.data.newCity);
+        dispatch(addCity(response.data.newCity._id, response.data.newCity.name));
     });
   };
 };
@@ -81,9 +90,20 @@ const addCityStore = name => {
 const deleteCityStore = id => {
   return dispatch => {
     axios
-      .delete('/favourites/${id}')
+      .delete('favourites/' + id)
       .then(response => {
         dispatch(deleteCity(id))
+      })
+  }
+}
+
+const getCities = () => {
+  return dispatch => {
+    axios
+      .get('favourites')
+      .then(response => {
+        const cities = response.data.map(city => ({ id: city._id, name: city.name }));
+        dispatch(getCity(cities));
       })
   }
 }
