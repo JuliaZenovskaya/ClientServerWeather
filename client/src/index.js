@@ -11,8 +11,8 @@ import сitiesReducer from './reducers/сitiesReducer';
 import thunk from "redux-thunk";
 
 const store = createStore (combineReducers({
-geo : geoReducer,
-fav_cities : сitiesReducer,
+  geo : geoReducer,
+  fav_cities : сitiesReducer,
 }),applyMiddleware(thunk));
 
 ReactDOM.render(
