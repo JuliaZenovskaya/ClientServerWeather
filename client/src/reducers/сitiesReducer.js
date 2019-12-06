@@ -1,10 +1,11 @@
 import { getCities } from "../components/Cities/Cities";
 import axios from 'axios';
 
-export default function citiesReducer(currentState = {cities: [], error:false}, action) {
+export default function citiesReducer(currentState = {cities: [], error: false}, action) {
 
 let state = {
-  ...currentState
+  ...currentState,
+  error: false
 };
 
 let newCities = [];
@@ -19,7 +20,7 @@ switch (action.type) {
   case 'ADD_CITY':
   newCities = state.cities.filter(city => city.name == action.payload.name);
   console.log(newCities);
-  if (!state.cities.has(action.payload.name)) {
+  if (newCities.length === 0) {
     newCities = [...state.cities, { id: action.payload.id, name: action.payload.name }];
     state = {
       ...state,
@@ -59,6 +60,8 @@ switch (action.type) {
       ...state,
       cities: newCities
     };
+    axios
+      .delete('favourites/' + action.payload.id);
     break;
   default:
     break;

@@ -1,7 +1,6 @@
 
 
 export function addCity(id, name) {
-  console.log(name);
   return {
     type: 'ADD_CITY',
     payload: {
